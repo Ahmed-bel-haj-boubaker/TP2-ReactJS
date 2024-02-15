@@ -1,0 +1,40 @@
+.navbar {
+  background-color: #343a40;
+  padding: 10px 20px;
+  margin: 0; /* Remove default margin */
+  position: fixed; /* Fixed position */
+  top: 0; /* Stick to the top */
+  left: 0; /* Stick to the left */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure the navbar appears on top of other content */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Larger font size for the brand/logo */
+  color: #ffffff; /* Text color for the brand/logo */
+}
+
+.nav-link {
+  color: #ffffff; /* Text color for the links */
+  font-size: 1rem; /* Font size for the links */
+  padding: 0.5rem 1rem; /* Padding around the links */
+  text-decoration: none; /* Remove underline */
+}
+
+.nav-link:hover {
+  color: #ffffff; /* Text color for the links on hover */
+  background-color: #495057; /* Background color for the links on hover */
+  border-radius: 0.25rem; /* Rounded corners */
+}
+
+/* Active link style */
+.nav-link.active {
+  font-weight: bold; /* Bold font weight for the active link */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Stack links vertically on small screens */
+  }
+}
