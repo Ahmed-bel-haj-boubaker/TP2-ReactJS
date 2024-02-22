@@ -1,18 +1,33 @@
 import { Navbar, Nav } from "react-bootstrap";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import "../assets/nav.css";
 
 function NavBar() {
   return (
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="#home">EVENT</Navbar.Brand>
+      <Navbar.Brand to="/events">EVENT</Navbar.Brand>
       <Nav className="mr-auto">
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/eventDetails" className="nav-link">Event</Link>
+        <NavLink
+          to="/events"
+          style={({ isActive }) => ({
+            color: isActive ? "gray" : "white",
+          })}
+          className="nav-link"
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/about"
+          style={({ isActive }) => ({
+            color: isActive ? "gray" : "white",
+          })}
+          className="nav-link"
+        >
+          About
+        </NavLink>
       </Nav>
       <Outlet />
     </Navbar>
-    
   );
 }
 export default NavBar;
