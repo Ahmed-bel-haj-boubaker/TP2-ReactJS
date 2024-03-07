@@ -1,14 +1,16 @@
 import { Suspense, useEffect, useState } from "react";
-import eventsData from "./data/events.json";
 import "./App.css";
+
 import Events from "./components/Events";
 import React from "react";
 import NavBar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Event from "./components/DetailedEvent";
 import NotFound from "./components/NotFound";
-import EventLayout from "./components/EventLayout";
-import About from "./components/About";
+import EventsService from "./services/EventsService";
+
+import { getAllEvent } from "./service/api";
+import EventUpdate from "./services/EventUpdate";
 
 export const EventsContext = React.createContext();
 
@@ -18,7 +20,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setEvents(eventsData);
+        const data = await getAllEvent();
+        setEvents(data.data);
       } catch (err) {
         console.log("error in fetching the data : ", err);
       }
@@ -26,6 +29,7 @@ function App() {
 
     fetchData();
   }, []);
+
   const About = React.lazy(() => import("./components/About"));
   const EventLayout = React.lazy(() => import("./components/EventLayout"));
 
@@ -39,6 +43,9 @@ function App() {
               <Route index element={<Events events={events} />} />
               <Route path=":eventId" element={<Event />} />
             </Route>
+            <Route path="/addEvent" element={<EventsService />} />
+            <Route path="/update/:id" element={<EventUpdate />} />
+
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

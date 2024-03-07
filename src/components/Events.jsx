@@ -13,7 +13,7 @@ function Events({ events }) {
   const [showAlert, setShowAlert] = useState(false);
   const setEvents = useContext(EventsContext);
   const [showWelcome, setShowWelcome] = useState(false);
-
+ 
   const buy = (eventId) => {
     const updatedEvents = [...events];
     const eventIndex = updatedEvents.findIndex((event) => event.id === eventId);
@@ -71,7 +71,7 @@ function Events({ events }) {
 
       <Container>
         <Row>
-          {events.map((event) => (
+          {  events.map((event) => (
             <Col key={event.id}>
               <Card style={{ width: "18rem" }}>
                 {event.nbTickets === 0 ? (
