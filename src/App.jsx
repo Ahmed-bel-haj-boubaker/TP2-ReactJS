@@ -4,7 +4,7 @@ import "./App.css";
 import Events from "./components/Events";
 import React from "react";
 import NavBar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route ,Navigate } from "react-router-dom";
 import Event from "./components/DetailedEvent";
 import NotFound from "./components/NotFound";
 import EventsService from "./services/EventsService";
@@ -39,13 +39,15 @@ function App() {
         <NavBar />
         <Suspense fallback={<p>chargement ....</p>}>
           <Routes>
+            {/* Redirect from "/" to "/events" */}
+            <Route path="/" element={<Navigate to="/events" />} />
+            {/* Define other routes */}
             <Route path="/events" element={<EventLayout />}>
               <Route index element={<Events events={events} />} />
               <Route path=":eventId" element={<Event />} />
             </Route>
             <Route path="/addEvent" element={<EventsService />} />
             <Route path="/update/:id" element={<EventUpdate />} />
-
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
